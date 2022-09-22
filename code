@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool correct=true;
+long long score,r=1,num,ans;
+int rng(){
+	srand(time(NULL));
+	int rn=rand()%10;
+	return rn;
+}
+void checkans(int ans){
+	if(ans==num)score+=r*100;
+	else correct=false;
+}
+void displaytext(string t,double delay,bool end){
+	int i=0;
+	while (t[i]!='\0'){
+		cout<<t[i];
+		usleep(1000000*delay);
+		i++;
+	}
+	if(end)cout<<endl;
+}
+int main(){
+	displaytext("Hello!",0.1,false);
+	usleep(1000000);
+	system("CLS");
+	displaytext("Welcome to Just a Number Memorising Game!",0.1,false);
+	usleep(1000000);
+	system("CLS");
+	usleep(1000000);
+	displaytext("Let's begin!",0.1,false);
+	usleep(1000000);
+	system("CLS");
+	displaytext("[SCORE]: ",0.1,false);
+	displaytext(to_string(score),0.05,true);
+	for(int i=1;i<=to_string(score).size()+9;i++)displaytext("-",0.05,false);
+	while(correct){
+		system("CLS");
+		num=num*10+rng();
+		cout<<"[SCORE]: ";
+		displaytext(to_string(score),0.05,true);
+		for(int i=1;i<=to_string(score).size()+9;i++)cout<<"-";
+		displaytext("-",0.05,true);
+		displaytext("MEMORISE THIS --> ",0.05,false);
+		displaytext(to_string(num),0.2,false);
+		usleep(2000000);
+		system("CLS");
+		cout<<"[SCORE]: "<<score<<endl;
+		for(int i=1;i<=to_string(score).size()+9;i++)cout<<"-";
+		cout<<"-"<<endl;
+		displaytext("Enter what you memorised: ",0.05,false);
+		cin>>ans;
+		checkans(ans);
+		r++;
+		usleep(500000);
+		system("CLS");
+	}
+	displaytext("[GAME OVER]",0.2,true);
+	usleep(500000);
+	displaytext("[SCORE]: ",0.1,false);
+	displaytext(to_string(score),0.05,true);
+	usleep(10000000);
+	system("CLS");
+	return 0;
+}
